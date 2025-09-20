@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>MyKantin - Splash</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+  <style>
+    * { margin:0; padding:0; box-sizing:border-box; font-family: 'Poppins', sans-serif; }
+    body, html { width:100%; height:100%; overflow:hidden; }
+    .splash {
+      position: relative;
+      width: 100%;
+      height: 100%;
+      background: url('bg.png') center/cover no-repeat;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+      padding: 30px;
+      color: #fff;
+    }
+    .splash .logo {
+      font-size: 36px;
+      font-weight: 700;
+      margin-bottom: 10px;
+    }
+    .splash .tagline {
+      font-size: 16px;
+      margin-bottom: 20px;
+    }
+    .splash .next-btn {
+      font-size: 24px;
+      cursor: pointer;
+      align-self: flex-end;
+      background: rgba(255,255,255,0.2);
+      padding: 10px 15px;
+      border-radius: 50%;
+      transition: all 0.3s;
+    }
+    .splash .next-btn:hover {
+      background: rgba(255,255,255,0.4);
+    }
+  </style>
+</head>
+<body>
+  <div class="splash">
+    <div class="logo">myKantin</div>
+    <div class="tagline">One-stop solution for all your canteen needs.</div>
+    <div class="next-btn" onclick="goHome()">→</div>
+  </div>
+
+  <script>
+    function goHome() {
+      window.location.href = "home.html";
+    }
+
+  </script>
+</body>
+</html>

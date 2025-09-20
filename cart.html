@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>MyKantin - Cart</title>
+  <link rel="stylesheet" href="cart.css">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+</head>
+<body>
+  <div class="app-container">
+    <header>
+      <a href="home.html" class="back">←</a>
+      <h1>Pesan 🛒</h1>
+    </header>
+
+    <section class="cart-items" id="cartItems">
+      <!-- Item akan muncul lewat JS -->
+    </section>
+
+    <section class="payment-method">
+      <h3>Metode pembayaran</h3>
+      <label>
+        <input type="radio" name="payment" value="Cash" checked> Dana
+      </label><br>
+      <label>
+        <input type="radio" name="payment" value="Gopay"> Gopay
+      </label>
+    </section>
+
+    <button class="confirm-btn" id="confirmBtn">Konfirmasi pesanan</button>
+  </div>
+
+  <script>
+    const cart = JSON.parse(localStorage.getItem("cart")) || [];
+    const cartContainer = document.getElementById("cartItems");
+
+    if(cart.length === 0){
+      cartContainer.innerHTML = "<p>Keranjang kosong</p>";
+    } else {
+      cart.forEach((item, index) => {
+        cartContainer.innerHTML += `
+          <div class="cart-card">
+            <img src="${item.img}" alt="${item.name}">
+            <div>
+              <h4>${item.name}</h4>
+              <p>${item.price} x ${item.qty}</p>
+              <div class="qty-controls">
+                <button onclick="updateQty(${index}, -1)">−</button>
+                <span>${item.qty}</span>
+                <button onclick="updateQty(${index}, 1)">+</button>
+              </div>
+            </div>
+          </div>
+        `;
+      });
+    }
+
+    function updateQty(index, change) {
+      cart[index].qty += change;
+      if(cart[index].qty <= 0){
+        cart.splice(index, 1);
+      }
+      localStorage.setItem("cart", JSON.stringify(cart));
+      location.reload(); // refresh halaman untuk update
+    }
+
+    document.getElementById("confirmBtn").addEventListener("click", () => {
+      if(cart.length === 0){
+        alert("Keranjang kosong!");
+        return;
+      }
+
+      // ambil metode pembayaran yang dipilih
+      const paymentMethod = document.querySelector('input[name="payment"]:checked').value;
+
+      // simpan pesanan + metode pembayaran ke localStorage
+      const order = {
+        items: cart,
+        payment: paymentMethod,
+        time: new Date().toLocaleTimeString([], {hour: '2-digit', minute:'2-digit'}),
+        status: "Diproses"
+      };
+      localStorage.setItem("order", JSON.stringify(order));
+
+      // kosongkan cart
+      localStorage.removeItem("cart");
+
+      // redirect ke halaman status pesanan
+      window.location.href = "statuspesanan.html";
+    });
+  </script>
+</body>
+</html>
