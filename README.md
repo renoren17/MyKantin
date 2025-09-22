@@ -6,9 +6,9 @@ MyKantin adalah aplikasi web sederhana yang memungkinkan pengguna untuk menjelaj
 ## Anggota Kelompok
 
 - Cinta (dev & UI/UX)
-- Resya (pkl)
-- Ilyas (pkl)
-- Alvis (pkl)
+- Resya (pkl, tidak berkontribusi)
+- Ilyas (pkl, tidka berkontribusi)
+- Alvis (pkl, tidak berkontribusi)
 - Syafitri (tidak berkontribusi)
 - Marvel (tidak berkontribusi)
 
